@@ -14,7 +14,7 @@ namespace L {
             super(latlng, options);
             this._parentLayer = parentLayer;
         }
-        override onAdd(map): this {
+        override onAdd(map: L.Map): this {
             super.onAdd(map);
             this._map = map;
             this._map.getRenderer(this);
@@ -57,7 +57,7 @@ namespace L {
             super(url, options);
         }
         static onEachFeature(feature: GeoJSON.Feature, layer: L.Polyline | L.Marker, parentLayer: L.LaGridsLayer): void {
-            if (feature.geometry.type === 'MultiLineString' || feature.geometry.type === 'LineString')
+            if (layer instanceof L.Polyline)
             {
                 layer.options.color = parentLayer._map.options.baseLayerTheme === 'dark' ? 'white' : 'red';
                 layer.options.interactive = false;
